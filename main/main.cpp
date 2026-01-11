@@ -3869,10 +3869,12 @@ void Main::setup_boot_logo() {
 
 #if defined(TOOLS_ENABLED) && defined(MACOS_ENABLED)
 		// SAGE: Icon disabled
-		// if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && OS::get_singleton()->get_bundle_icon_path().is_empty()) {
-		// 	Ref<Image> icon = memnew(Image(app_icon_png));
-		// 	DisplayServer::get_singleton()->set_icon(icon);
-		// }
+		/*
+		if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && OS::get_singleton()->get_bundle_icon_path().is_empty()) {
+			Ref<Image> icon = memnew(Image(app_icon_png));
+			DisplayServer::get_singleton()->set_icon(icon);
+		}
+		*/
 #endif
 	}
 	RenderingServer::get_singleton()->set_default_clear_color(
@@ -4672,15 +4674,15 @@ int Main::start() {
 #endif
 
 				String icon_path = GLOBAL_GET("application/config/icon");
-			// SAGE: Icon disabled
-			// if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && !icon_path.is_empty() && !has_icon) {
-			// 	Ref<Image> icon;
-			// 	icon.instantiate();
-			// 	if (ImageLoader::load_image(icon_path, icon) == OK) {
-			// 		DisplayServer::get_singleton()->set_icon(icon);
-			// 		has_icon = true;
-			// 	}
-			// }
+				if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && !icon_path.is_empty() && !has_icon) {
+					Ref<Image> icon;
+					icon.instantiate();
+					if (ImageLoader::load_image(icon_path, icon) == OK) {
+						DisplayServer::get_singleton()->set_icon(icon);
+						has_icon = true;
+					}
+				}
+			}
 
 			OS::get_singleton()->benchmark_end_measure("Startup", "Load Game");
 		}
@@ -4716,10 +4718,12 @@ int Main::start() {
 	}
 
 	// SAGE: Icon disabled
-	// if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && !has_icon && OS::get_singleton()->get_bundle_icon_path().is_empty()) {
-	// 	Ref<Image> icon = memnew(Image(app_icon_png));
-	// 	DisplayServer::get_singleton()->set_icon(icon);
-	// }
+	/*
+	if (DisplayServer::get_singleton()->has_feature(DisplayServer::FEATURE_ICON) && !has_icon && OS::get_singleton()->get_bundle_icon_path().is_empty()) {
+		Ref<Image> icon = memnew(Image(app_icon_png));
+		DisplayServer::get_singleton()->set_icon(icon);
+	}
+	*/
 
 	if (movie_writer) {
 		Size2i movie_size = Size2i(GLOBAL_GET("display/window/size/viewport_width"), GLOBAL_GET("display/window/size/viewport_height"));
