@@ -4,7 +4,8 @@
 #define RT_MANIFEST 24
 #endif
 
-GODOT_ICON ICON platform/windows/godot.ico
+// SAGE: Icon disabled
+// GODOT_ICON ICON platform/windows/godot.ico
 1 RT_MANIFEST "platform/windows/godot.manifest"
 
 1 VERSIONINFO
