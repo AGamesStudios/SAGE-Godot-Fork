@@ -805,6 +805,33 @@ void ProjectDialog::ok_pressed() {
 			}
 		}
 #endif
+
+		// SAGE: Remove empty addons folder if created
+		String addons_path = path.path_join("addons");
+		if (DirAccess::exists(addons_path)) {
+			Ref<DirAccess> da = DirAccess::open(addons_path);
+			if (da.is_valid()) {
+				da->list_dir_begin();
+				String item = da->get_next();
+				bool is_empty = true;
+				while (!item.is_empty()) {
+					if (item != "." && item != "..") {
+						is_empty = false;
+						break;
+					}
+					item = da->get_next();
+				}
+				da->list_dir_end();
+				
+				if (is_empty) {
+					Ref<DirAccess> root_da = DirAccess::open(path);
+					if (root_da.is_valid()) {
+						root_da->remove(addons_path);
+					}
+				}
+			}
+		}
+
 		emit_signal(SNAME("project_created"), path, edit_check_box->is_pressed());
 	} else if (mode == MODE_DUPLICATE) {
 		emit_signal(SNAME("project_duplicated"), original_project_path, path, edit_check_box->is_visible() && edit_check_box->is_pressed());
