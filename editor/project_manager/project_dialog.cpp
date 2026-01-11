@@ -617,8 +617,7 @@ void ProjectDialog::ok_pressed() {
 		const String editor_config_path = path.path_join(".editorconfig");
 		Ref<FileAccess> f = FileAccess::open(editor_config_path, FileAccess::WRITE);
 		if (f.is_null()) {
-			// .editorconfig isn't so critical.
-			ERR_PRINT("Couldn't create .editorconfig in project path.");
+			// .editorconfig isn't so critical - silently skip
 		} else {
 			f->store_line("root = true");
 			f->store_line("");
