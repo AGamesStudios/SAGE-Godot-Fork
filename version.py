@@ -1,9 +1,9 @@
-short_name = "godot"
-name = "Godot Engine"
-major = 4
-minor = 6
+short_name = "sage"
+name = "SAGE"
+major = 1
+minor = 0
 patch = 0
-status = "beta"
+status = "dev"
 module_config = ""
-website = "https://godotengine.org"
+website = "https://github.com/AGamesStudios/SAGE-Godot-Fork"
 docs = "latest"

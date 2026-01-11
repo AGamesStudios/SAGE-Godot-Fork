@@ -3839,15 +3839,28 @@ void Main::setup_boot_logo() {
 #ifndef NO_DEFAULT_BOOT_LOGO
 			MAIN_PRINT("Main: Create bootsplash");
 #if defined(TOOLS_ENABLED) && !defined(NO_EDITOR_SPLASH)
-			Ref<Image> splash = (editor || project_manager) ? memnew(Image(boot_splash_editor_png)) : memnew(Image(boot_splash_png));
+			// SAGE: Disable default Godot splash for editor, just show background color
+			if (editor || project_manager) {
+				// Create a 1x1 pixel transparent image - no splash for SAGE editor
+				Ref<Image> splash;
+				splash.instantiate();
+				splash->initialize_data(1, 1, false, Image::FORMAT_RGBA8);
+				splash->set_pixel(0, 0, boot_bg_color);
+				RenderingServer::get_singleton()->set_default_clear_color(boot_bg_color);
+				RenderingServer::get_singleton()->set_boot_image_with_stretch(splash, boot_bg_color, RenderingServer::SPLASH_STRETCH_MODE_DISABLED);
+			} else {
+				Ref<Image> splash = memnew(Image(boot_splash_png));
+				RenderingServer::get_singleton()->set_default_clear_color(boot_bg_color);
+				RenderingServer::get_singleton()->set_boot_image_with_stretch(splash, boot_bg_color, RenderingServer::SPLASH_STRETCH_MODE_DISABLED);
+			}
 #else
 			Ref<Image> splash = memnew(Image(boot_splash_png));
-#endif
 
 			MAIN_PRINT("Main: ClearColor");
 			RenderingServer::get_singleton()->set_default_clear_color(boot_bg_color);
 			MAIN_PRINT("Main: Image");
 			RenderingServer::get_singleton()->set_boot_image_with_stretch(splash, boot_bg_color, RenderingServer::SPLASH_STRETCH_MODE_DISABLED);
+#endif
 #endif
 		}
 

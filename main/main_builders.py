@@ -20,10 +20,9 @@ def make_splash_editor(target, source, env):
     buffer = methods.get_buffer(str(source[0]))
 
     with methods.generated_wrapper(str(target[0])) as file:
-        # The editor splash background color is taken from the default editor theme's background color.
-        # This helps achieve a visually "smoother" transition between the splash screen and the editor.
+        # SAGE Editor splash - yellow theme color
         file.write(f"""\
-static const Color boot_splash_editor_bg_color = Color(0.125, 0.145, 0.192);
+static const Color boot_splash_editor_bg_color = Color(0.12, 0.12, 0.12);
 inline constexpr const unsigned char boot_splash_editor_png[] = {{
 	{methods.format_buffer(buffer, 1)}
 }};
