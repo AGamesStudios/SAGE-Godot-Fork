@@ -1,0 +1,12 @@
+# SCsub for SAGE Core Module
+
+Import("env")
+Import("env_modules")
+
+env_sage_core = env_modules.Clone()
+
+# Add module source files
+env_sage_core.add_source_files(env.modules_sources, "*.cpp")
+
+# Add subdirectories if needed
+# env_sage_core.add_source_files(env.modules_sources, "nodes/*.cpp")
