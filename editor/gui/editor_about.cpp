@@ -54,10 +54,9 @@ void EditorAbout::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_TRANSLATION_CHANGED: {
 			_about_text_label->set_text(
-					String(U"© 2014-present ") + TTR("Godot Engine contributors") + ".\n" +
-					String(U"© 2007-2014 Juan Linietsky, Ariel Manzur.\n"));
+					String(U"© 2024-present A Games Studios.\n"));
 
-			_project_manager_label->set_text(TTR("Project Manager", "Job Title"));
+			// _project_manager_label->set_text(TTR("Project Manager", "Job Title"));
 
 			for (ItemList *il : name_lists) {
 				for (int i = 0; i < il->get_item_count(); i++) {
@@ -73,11 +72,13 @@ void EditorAbout::_notification(int p_what) {
 			const Ref<Font> font = get_theme_font(SNAME("source"), EditorStringName(EditorFonts));
 			const int font_size = get_theme_font_size(SNAME("source_size"), EditorStringName(EditorFonts));
 
+			/* SAGE: Third-party Licenses removed
 			_tpl_text->begin_bulk_theme_override();
 			_tpl_text->add_theme_font_override("normal_font", font);
 			_tpl_text->add_theme_font_size_override("normal_font_size", font_size);
 			_tpl_text->add_theme_constant_override(SceneStringName(line_separation), 4 * EDSCALE);
 			_tpl_text->end_bulk_theme_override();
+			*/
 
 			license_text_label->begin_bulk_theme_override();
 			license_text_label->add_theme_font_override("normal_font", font);
@@ -85,7 +86,9 @@ void EditorAbout::_notification(int p_what) {
 			license_text_label->add_theme_constant_override(SceneStringName(line_separation), 4 * EDSCALE);
 			license_text_label->end_bulk_theme_override();
 
+			/* SAGE: Logo removed
 			_logo->set_texture(get_editor_theme_icon(SNAME("Logo")));
+			*/
 
 			for (ItemList *il : name_lists) {
 				for (int i = 0; i < il->get_item_count(); i++) {
@@ -99,11 +102,13 @@ void EditorAbout::_notification(int p_what) {
 	}
 }
 
+/* SAGE: Third-party Licenses removed
 void EditorAbout::_license_tree_selected() {
 	TreeItem *selected = _tpl_tree->get_selected();
 	_tpl_text->scroll_to_line(0);
 	_tpl_text->set_text(selected->get_metadata(0));
 }
+*/
 
 void EditorAbout::_credits_visibility_changed() {
 	if (!credits_roll->is_visible()) {
@@ -207,7 +212,7 @@ Label *EditorAbout::_create_section(Control *p_parent, const String &p_name, con
 }
 
 EditorAbout::EditorAbout() {
-	set_title(TTRC("Thanks from the Godot community!"));
+	set_title(TTRC("About SAGE Engine"));
 	set_hide_on_ok(true);
 
 	VBoxContainer *vbc = memnew(VBoxContainer);
@@ -219,9 +224,11 @@ EditorAbout::EditorAbout() {
 	hbc->add_theme_constant_override("separation", 30 * EDSCALE);
 	vbc->add_child(hbc);
 
+	/* SAGE: Logo removed
 	_logo = memnew(TextureRect);
 	_logo->set_stretch_mode(TextureRect::STRETCH_KEEP_ASPECT_CENTERED);
 	hbc->add_child(_logo);
+	*/
 
 	VBoxContainer *version_info_vbc = memnew(VBoxContainer);
 
@@ -246,6 +253,7 @@ EditorAbout::EditorAbout() {
 	tc->set_theme_type_variation("TabContainerOdd");
 	vbc->add_child(tc);
 
+	/* SAGE: Authors and Donors tabs removed
 	{
 		ScrollContainer *sc = memnew(ScrollContainer);
 		sc->set_name(TTRC("Authors"));
@@ -283,6 +291,7 @@ EditorAbout::EditorAbout() {
 		_create_section(vb, TTRC("Platinum Members"), DONORS_MEMBERS_PLATINUM, FLAG_ALLOW_WEBSITE);
 		_create_section(vb, TTRC("Gold Members"), DONORS_MEMBERS_GOLD, FLAG_ALLOW_WEBSITE);
 	}
+	*/
 
 	// License.
 
@@ -295,6 +304,7 @@ EditorAbout::EditorAbout() {
 	license_text_label->set_text(String::utf8(GODOT_LICENSE_TEXT));
 	tc->add_child(license_text_label);
 
+	/* SAGE: Third-party Licenses tab removed
 	// Thirdparty License.
 
 	VBoxContainer *license_thirdparty = memnew(VBoxContainer);
@@ -302,7 +312,7 @@ EditorAbout::EditorAbout() {
 	license_thirdparty->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	tc->add_child(license_thirdparty);
 
-	Label *tpl_label = memnew(Label(TTRC("Godot Engine relies on a number of third-party free and open source libraries, all compatible with the terms of its MIT license. The following is an exhaustive list of all such third-party components with their respective copyright statements and license terms.")));
+	Label *tpl_label = memnew(Label(TTRC("SAGE Engine relies on a number of third-party free and open source libraries, all compatible with the terms of its MIT license. The following is an exhaustive list of all such third-party components with their respective copyright statements and license terms.")));
 	tpl_label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	tpl_label->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	tpl_label->set_autowrap_mode(TextServer::AUTOWRAP_WORD_SMART);
@@ -377,4 +387,5 @@ EditorAbout::EditorAbout() {
 	_tpl_tree->connect(SceneStringName(item_selected), callable_mp(this, &EditorAbout::_license_tree_selected));
 	tpl_ti_all->select(0);
 	_tpl_text->set_text(tpl_ti_all->get_metadata(0));
+	*/
 }

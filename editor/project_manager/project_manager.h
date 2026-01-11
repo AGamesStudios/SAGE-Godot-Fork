@@ -90,7 +90,7 @@ class ProjectManager : public Control {
 	Control *left_spacer = nullptr;
 	Control *right_menu_spacer = nullptr;
 	Control *right_spacer = nullptr;
-	Button *title_bar_logo = nullptr;
+	// Button *title_bar_logo = nullptr; // SAGE: Logo removed
 	HBoxContainer *main_view_toggles = nullptr;
 	Button *quick_settings_button = nullptr;
 
@@ -163,7 +163,7 @@ class ProjectManager : public Control {
 	Button *manage_tags_btn = nullptr;
 	Button *erase_btn = nullptr;
 	Button *erase_missing_btn = nullptr;
-	Button *donate_btn = nullptr;
+	// Button *donate_btn = nullptr; // SAGE: Donate button removed
 
 	HBoxContainer *open_btn_container = nullptr;
 	PopupMenu *open_options_popup = nullptr;
@@ -204,7 +204,7 @@ class ProjectManager : public Control {
 	void _update_project_buttons();
 	void _open_options_popup();
 	void _open_recovery_mode_ask(bool manual = false);
-	void _open_donate_page();
+	// void _open_donate_page(); // SAGE: Donate button removed
 
 	void _on_project_created(const String &dir, bool edit);
 	void _on_project_duplicated(const String &p_original_path, const String &p_duplicate_path, bool p_edit);

@@ -53,18 +53,18 @@ private:
 		FLAG_EASTER_EGG = 1 << 2,
 	};
 
-	void _license_tree_selected();
+	// void _license_tree_selected(); // SAGE: Third-party Licenses removed
 	void _credits_visibility_changed();
 	void _item_activated(int p_idx, ItemList *p_il);
 	void _item_list_resized(ItemList *p_il);
 	Label *_create_section(Control *p_parent, const String &p_name, const char *const *p_src, BitField<SectionFlags> p_flags = 0);
 
 	Label *_about_text_label = nullptr;
-	Label *_project_manager_label = nullptr;
-	Tree *_tpl_tree = nullptr;
+	// Label *_project_manager_label = nullptr; // SAGE: Removed
+	// Tree *_tpl_tree = nullptr; // SAGE: Removed
 	RichTextLabel *license_text_label = nullptr;
-	RichTextLabel *_tpl_text = nullptr;
-	TextureRect *_logo = nullptr;
+	// RichTextLabel *_tpl_text = nullptr; // SAGE: Removed
+	// TextureRect *_logo = nullptr; // SAGE: Removed
 	Vector<ItemList *> name_lists;
 	CreditsRoll *credits_roll = nullptr;
 
