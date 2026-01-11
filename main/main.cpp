@@ -3786,6 +3786,9 @@ void Main::setup_boot_logo() {
 
 #if !defined(TOOLS_ENABLED) && defined(WEB_ENABLED)
 	bool show_logo = false;
+#elif defined(TOOLS_ENABLED)
+	// SAGE: Disable splash screen for editor completely
+	bool show_logo = !(editor || project_manager);
 #else
 	bool show_logo = true;
 #endif
